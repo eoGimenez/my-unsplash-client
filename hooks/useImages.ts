@@ -29,5 +29,5 @@ export function useImages() {
         getImages()
     }, [])
 
-    return { images }
+    return { images, getImages }
 }
