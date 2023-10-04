@@ -1,0 +1,25 @@
+.modal--add--photo {
+	position: absolute;
+	top: 15rem;
+	right: 25rem;
+	left: 40%;
+    padding: 2rem;
+    background-color: #fff; 
+    text-align: start;
+}
+.form--new--photo {
+	max-width: 35rem;
+}
+
+.form--new--photo fieldset {
+	border: none;
+	display: flex;
+	flex-direction: column;
+	text-align: start;
+	gap: 0.5rem;
+}
+.form--new--photo input {
+    padding: 1rem 1rem;
+    border-radius: 9px;
+    border: 1px solid gray;
+}
