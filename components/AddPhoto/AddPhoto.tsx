@@ -1,7 +1,11 @@
 import { useField } from '../../hooks/useField'
 import './AddPhoto.css'
 
-export default function AddPhoto() {
+type switchType = {
+    switchBool: () => void
+}
+
+export default function AddPhoto({ switchBool }: switchType) {
     const label = useField({type: 'text', field: ''})
     const imgUrl = useField({type: 'text', field: ''})
 
@@ -17,6 +21,10 @@ export default function AddPhoto() {
                     <label htmlFor='imgUrl'>Photo URL</label>
                     <input id='imgUrl' placeholder='https://www.example-path-of-image.com.la' {...imgUrl} />
                 </fieldset>
+                <div className='form--new--photo--buttons'>
+                <p onClick={() => {switchBool()}}>Cancel</p>
+                <button className='btn nav--btn--add'>Submit</button>
+                </div>
             </form> 
         </div>
         )

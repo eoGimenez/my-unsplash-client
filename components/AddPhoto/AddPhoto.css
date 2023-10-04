@@ -3,9 +3,9 @@
 	top: 15rem;
 	right: 25rem;
 	left: 40%;
-    padding: 2rem;
-    background-color: #fff; 
-    text-align: start;
+	padding: 2rem;
+	background-color: #fff;
+	text-align: start;
 }
 .form--new--photo {
 	max-width: 35rem;
@@ -18,8 +18,31 @@
 	text-align: start;
 	gap: 0.5rem;
 }
+.form--new--photo label {
+    font-size: 1.4rem;
+    font-weight: 500;
+    
+    cursor: pointer;
+}
 .form--new--photo input {
-    padding: 1rem 1rem;
-    border-radius: 9px;
-    border: 1px solid gray;
+	padding: 1rem 1rem;
+	border-radius: 9px;
+	border: 1px solid gray;
+}
+
+.form--new--photo--buttons {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1.5rem;
+	justify-content: end;
+	margin-right: 1rem;
+}
+.form--new--photo--buttons p {
+	color: gray;
+	font-weight: 500;
+	cursor: pointer;
+}
+.btn {
+	border: none;
 }

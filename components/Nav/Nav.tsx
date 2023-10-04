@@ -22,7 +22,7 @@ export default function Nav() {
                     </div>
                 </div>
                 <p className='nav--btn--add' onClick={switchBool}>Add a photo</p>
-                {isTrue ? <AddPhoto /> : null}
+                {isTrue ? <AddPhoto switchBool={switchBool}/> : null}
             </nav>
         
     )
