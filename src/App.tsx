@@ -7,7 +7,7 @@ const { images } = useImages()
 
   return (
     <>
-      <Nav />
+      <Nav images={images}/>
       <section>
         {images?.map(image => (
           <div key={image.id} className='img--container' >

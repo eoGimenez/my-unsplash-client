@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 const API_URL = "http://localhost:5005/api"
 
-type Image = {
+export type ImageType = {
   id:string,
   label: string,
   imgUrl: string
@@ -11,7 +11,7 @@ type Image = {
 
 
 export function useImages() {
-    const [images, setImages] = useState<Image[] | null>(null)
+    const [images, setImages] = useState<ImageType[] | null>(null)
     // const [error, setError] = useState(null)
 
     const getImages = () => {

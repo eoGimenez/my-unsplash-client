@@ -1,10 +1,12 @@
 import './Nav.css'
-import { useField } from '../../hooks/useField'
 import { useSwitch } from '../../hooks/useSwitch'
+import { useSearch } from '../../hooks/useSearch'
 import AddPhoto from '../AddPhoto/AddPhoto'
+import { ImageType } from '../../hooks/useImages'
+  
 
-export default function Nav() {
-    const searchInput = useField({type: 'text', field: ''})
+export default function Nav({images}: {images: ImageType[] }) {
+    const searchInput = useSearch({images: images })
     const {isTrue, switchBool } = useSwitch()
     
     return (
