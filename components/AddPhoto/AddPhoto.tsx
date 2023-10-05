@@ -1,4 +1,5 @@
 import { useField } from '../../hooks/useField'
+import { useImages } from '../../hooks/useImages'
 import './AddPhoto.css'
 
 type switchType = {
@@ -8,11 +9,20 @@ type switchType = {
 export default function AddPhoto({ switchBool }: switchType) {
     const label = useField({type: 'text', field: ''})
     const imgUrl = useField({type: 'text', field: ''})
+    const { postImage } = useImages()
+
+    const imageHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault()
+        if (label.value && imgUrl.value) {
+            postImage(label.value,imgUrl.value)
+            location.reload()
+        }
+    }
 
     return(
-        <div className="modal--add--photo">
+        <div className="modal--add--photo" >
             <h2>Add a new photo</h2>
-            <form className='form--new--photo'>
+            <form className='form--new--photo' onSubmit={imageHandler}>
                 <fieldset>
                     <label htmlFor='label'>Label</label>
                     <input id='label' placeholder='Example name' {...label} />

@@ -17,7 +17,7 @@ export default function Nav() {
                         <p>devchallenges.io</p>
                     </div>
                     <div className='nav--search--bar--container'>
-                        <i className="fa-solid fa-magnifying-glass"></i>
+                        <label htmlFor='nav--search--input'><i className="fa-solid fa-magnifying-glass"></i></label>
                         <input id='nav--search--input' placeholder='Search by name' {...searchInput}  />
                     </div>
                 </div>
