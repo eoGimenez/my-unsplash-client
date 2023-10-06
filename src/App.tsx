@@ -5,9 +5,9 @@ import { useSearch } from '../hooks/useSearch'
 
 
 export default function App() {
-const { images } = useImages()
-const searchInput = useSearch({images: images })
-
+  const { images } = useImages()
+  const searchInput = useSearch({images: images})
+  
 
   return (
     <>

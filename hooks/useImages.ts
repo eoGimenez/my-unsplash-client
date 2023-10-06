@@ -10,10 +10,12 @@ export type ImageType = {
 
 
 
+
 export function useImages() {
     const [images, setImages] = useState<ImageType[] | null>(null)
     // const [error, setError] = useState(null)
-
+  
+  
     const getImages = () => {
         fetch(API_URL)
         .then(response => {
