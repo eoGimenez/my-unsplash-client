@@ -22,7 +22,7 @@ export default function Nav({searchInput}:{searchInput: searchInput}) {
                         <input id='nav--search--input' placeholder='Search by name' {...searchInput}  />
                     </div>
                 </div>
-                <p className='nav--btn--add' onClick={switchBool}>Add a photo</p>
+                <p className='btn--styled' onClick={switchBool}>Add a photo</p>
                 {isTrue ? <AddPhoto switchBool={switchBool}/> : null}
             </nav>
         

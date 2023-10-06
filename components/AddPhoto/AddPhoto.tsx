@@ -33,7 +33,7 @@ export default function AddPhoto({ switchBool }: switchType) {
                 </fieldset>
                 <div className='form--new--photo--buttons'>
                 <p onClick={() => {switchBool()}}>Cancel</p>
-                <button className='btn nav--btn--add'>Submit</button>
+                <button className='btn btn--styled'>Submit</button>
                 </div>
             </form> 
         </div>
