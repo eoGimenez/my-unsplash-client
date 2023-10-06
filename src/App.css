@@ -15,16 +15,6 @@ html {
 section {
 	margin-bottom: 3rem;
 }
-.img--container {
-	width: 20rem;
-	height: 20rem;
-	box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
-}
-.imagenes {
-	width: 20rem;
-	height: auto;
-}
-
 *:focus {
 	outline: none;
 	box-shadow: 0 0 0 0 0 transparent;

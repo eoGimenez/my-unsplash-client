@@ -21,7 +21,10 @@ export default function App() {
 }
 
 
-/* (images?.map(image => (
+/* 
+refactorizado
+
+(images?.map(image => (
           <div key={image.id} className='img--container' >
             <div className='img--container--hover'>
               <h1>{image.label}</h1>
