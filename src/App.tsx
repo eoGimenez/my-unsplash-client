@@ -9,12 +9,13 @@ export default function App() {
   const { images } = useImages()
   const searchInput = useSearch({images: images})
   
+  
 
   return (
     <>
       {images ? <Nav searchInput={searchInput}/> : null }
-      <section>
-        {!searchInput.searched ? <ImageCont images={images} /> : <ImageCont images={searchInput.searched} />}
+      <section className='app--section'>
+        {!searchInput.searched ? (images?.map((image) => <ImageCont key={image._id} image={image} />)) : (searchInput.searched.map((image) => <ImageCont key={image._id} image={image} />))}
       </section>
     </>
   )

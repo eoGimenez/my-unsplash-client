@@ -1,18 +1,19 @@
 import './ImageCont.css'
 import { ImageType } from '../../hooks/useImages'
+import { useSwitch } from '../../hooks/useSwitch'
+import DeletePhoto from '../DeletePhoto/DeletePhoto'
 
-export default function ImageCont({images}: {images:ImageType[] | null}) {
+export default function ImageCont({image}: {image:ImageType}) {
+    const {isTrue, switchBool} = useSwitch()
+
     return (
         <section className='section--img--container'>
-            {images?.map(image => (
-                <div key={image.id} className='img--container' >
-                <div className='img--container--hover'>
-                    <h1>{image.label}</h1>
-                    <p className='btn--styled'>DELETE</p>
+                <div className='img--container' >
+                    <h1 className='img--label'>{image.label}</h1>
+                    <p className='btn--delete' onClick={switchBool}>delete</p>
+                    <img src={image.imgUrl} alt={image.label} className='img'/>
+                    {isTrue ? <DeletePhoto image={image} switchBool={switchBool} /> : null}
                 </div>
-                <img src={image.imgUrl} alt={image.label} className='img'/>
-                </div>
-            ))}
         </section>
     )
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 const API_URL = "http://localhost:5005/api"
 
 export type ImageType = {
-  id:string,
+  _id:string,
   label: string,
   imgUrl: string
 }
@@ -57,10 +57,36 @@ export function useImages() {
      })
      .catch(err => console.error(err))
     }
+
+    const deleteImage = ({imageId , userCode } : {imageId: string, userCode: string}) => {
+
+      const json_string = JSON.stringify({ userCode })
+
+      const requestOptions = {
+        method: 'DELETE',
+        headers: new Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: json_string
+      }
+      fetch(`${API_URL}/${imageId}`, requestOptions)
+      .then(response => {
+        if (response.ok) {
+          return response.json()
+        }
+        throw response
+      })
+      .then(data => {
+        console.log(data);
+        
+        location.reload()
+      })
+      .catch(err => console.error(err))
+    }
     
     useEffect(() => {
         getImages()
     }, [])
 
-    return { images, getImages, postImage }
+    return { images, getImages, postImage, deleteImage }
 }

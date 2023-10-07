@@ -2,11 +2,11 @@ import { useField } from '../../hooks/useField'
 import { useImages } from '../../hooks/useImages'
 import './AddPhoto.css'
 
-type switchType = {
+/* type switchType = {
     switchBool: () => void
-}
+} */
 
-export default function AddPhoto({ switchBool }: switchType) {
+export default function AddPhoto({ switchBool }: {switchBool: () => void}) {
     const label = useField({type: 'text', field: ''})
     const imgUrl = useField({type: 'text', field: ''})
     const { postImage } = useImages()
