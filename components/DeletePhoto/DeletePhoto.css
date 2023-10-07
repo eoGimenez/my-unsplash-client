@@ -4,6 +4,7 @@
 	top: 30rem;
 	right: 40rem;
 	left: 40rem;
+    z-index: 5;
 
     padding: 3rem 2rem;
     border-radius: 9px;
