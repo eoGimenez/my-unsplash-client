@@ -1,0 +1,69 @@
+.modal--delete--photo {
+    background-color: #fff;
+	position: absolute;
+	top: 30rem;
+	right: 40rem;
+	left: 40rem;
+
+    padding: 3rem 2rem;
+    border-radius: 9px;
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.441);
+}
+
+.modal--delete--photo h2 {
+    text-align: start;
+    margin-left: 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: -0.03rem;
+}
+
+.form--delete--photo fieldset{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    gap: .7rem;
+}
+
+.form--delete--photo label {
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: -0.03rem;
+}
+
+.form--delete--photo input {
+    border-radius: 9px;
+    padding: 1rem;
+    border: 2px solid gray;
+}
+
+.form--delete--photo--buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 2rem;
+    margin-right: 1rem;
+    align-items: center;
+
+    margin-top: 1rem;
+}
+
+.form--delete--photo--buttons p {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: lightgrey;
+}
+.form--delete--photo .error--message{
+    color: red;
+}
+
+.form--delete--photo--buttons button {
+    border: none;
+    color: #fff;
+    background-color: rgb(236, 88, 71);
+    padding: 1rem 2rem;
+    border-radius: 9px;
+
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.441);
+}

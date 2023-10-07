@@ -12,8 +12,8 @@ export default function ImageCont({image}: {image:ImageType}) {
                     <h1 className='img--label'>{image.label}</h1>
                     <p className='btn--delete' onClick={switchBool}>delete</p>
                     <img src={image.imgUrl} alt={image.label} className='img'/>
-                    {isTrue ? <DeletePhoto image={image} switchBool={switchBool} /> : null}
                 </div>
+                    {isTrue ? <DeletePhoto image={image} switchBool={switchBool} /> : null}
         </section>
     )
 }

@@ -1,5 +1,6 @@
 .modal--add--photo {
 	position: absolute;
+	z-index: 5;
 	top: 15rem;
 	right: 40%;
 	left: 40%;

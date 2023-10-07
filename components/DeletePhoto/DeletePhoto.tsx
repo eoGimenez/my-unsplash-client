@@ -4,10 +4,13 @@ import { useField } from '../../hooks/useField'
 
 export default function DeletePhoto ({image, switchBool, }: {image:ImageType, switchBool: () => void} ) {
     const userCode = useField({type: 'password', field: ''})
-    const {deleteImage} = useImages()
+    const {deleteImage, errorMessage} = useImages()
 
-    const deleteHandler = (e) => {
-        deleteImage({imageId: image._id, userCode: userCode.value})
+    const deleteHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault()
+        if (userCode.value) {
+            deleteImage({imageId: image._id, userCode: userCode.value})
+        }
     }
     
     
@@ -20,8 +23,9 @@ export default function DeletePhoto ({image, switchBool, }: {image:ImageType, sw
                     <input id='password' placeholder='***********' {...userCode} />
                 </fieldset>
                 <div className='form--delete--photo--buttons'>
+                    {errorMessage ? <p className='error--message'>{errorMessage}</p>: null}
                     <p onClick={() => {switchBool()}}>Cancel</p>
-                    <button className='btn btn--styled'>Delete</button>
+                    <button>Delete</button>
                 </div>
             </form> 
         </div>

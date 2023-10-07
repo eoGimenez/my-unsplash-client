@@ -13,7 +13,7 @@ export type ImageType = {
 
 export function useImages() {
     const [images, setImages] = useState<ImageType[] | null>(null)
-    // const [error, setError] = useState(null)
+    const [errorMessage, setErrorMessage] = useState<string |null>(null)
   
   
     const getImages = () => {
@@ -36,7 +36,6 @@ export function useImages() {
           label,
           imgUrl
       })
-      console.log(json_string);
       
       const requestOptions = {
         method: 'POST',
@@ -61,7 +60,7 @@ export function useImages() {
     const deleteImage = ({imageId , userCode } : {imageId: string, userCode: string}) => {
 
       const json_string = JSON.stringify({ userCode })
-
+      
       const requestOptions = {
         method: 'DELETE',
         headers: new Headers({
@@ -71,22 +70,17 @@ export function useImages() {
       }
       fetch(`${API_URL}/${imageId}`, requestOptions)
       .then(response => {
-        if (response.ok) {
-          return response.json()
-        }
-        throw response
-      })
-      .then(data => {
-        console.log(data);
-        
+      if (response.ok) {
         location.reload()
+      }
+      throw response
       })
-      .catch(err => console.error(err))
+      .catch(err => setErrorMessage('Your user code is not correct !'))
     }
     
     useEffect(() => {
         getImages()
     }, [])
 
-    return { images, getImages, postImage, deleteImage }
+    return { images, errorMessage, getImages, postImage, deleteImage }
 }
