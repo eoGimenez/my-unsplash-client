@@ -75,7 +75,11 @@ export function useImages() {
       }
       throw response
       })
-      .catch(err => setErrorMessage('Your user code is not correct !'))
+      .catch(err => {
+        console.error(err);
+        
+        setErrorMessage('Your user code is not correct !')
+      })
     }
     
     useEffect(() => {
