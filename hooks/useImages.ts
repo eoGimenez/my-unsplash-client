@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 
-// NodeJS server
+// NodeJS API
 // const API_URL = "http://localhost:5005/api/"
 
-// FastAPI server
+// FastAPI API
 const API_URL = "http://127.0.0.1:8000/api/" 
 
 export type ImageType = {
