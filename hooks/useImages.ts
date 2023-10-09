@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 
-const API_URL = "http://localhost:5005/api"
+// NodeJS server
+// const API_URL = "http://localhost:5005/api/"
+
+// FastAPI server
+const API_URL = "http://127.0.0.1:8000/api/" 
 
 export type ImageType = {
   _id:string,
@@ -68,7 +72,7 @@ export function useImages() {
         }),
         body: json_string
       }
-      fetch(`${API_URL}/${imageId}`, requestOptions)
+      fetch(`${API_URL}${imageId}`, requestOptions)
       .then(response => {
       if (response.ok) {
         location.reload()
