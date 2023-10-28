@@ -1,18 +1,27 @@
-import { describe, expect, it, vi } from 'vitest'
-
 import { useField } from '../hooks/useField'
-import React from 'react'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const useState = vi.fn().mockImplementation((initialValue) => {
-	let value = initialValue
 
-	return [
-		value,
-		(newValue) => {
-			value = newValue
-		},
-	]
-})
+	/* const useStateSpy = vi.fn((initialValue) => {
+		let value = initialValue
+
+		return [
+			value,
+			(newValue) => {
+				value = newValue
+			},
+		]
+	}) */
+	vi.mock('useState', (initialValue) => {
+		let value = initialValue
+
+		return [
+			value,
+			(newValue) => {
+				value = newValue
+			},
+		]
+	})
 
 
 describe('useField()', () => {
