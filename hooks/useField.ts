@@ -6,6 +6,8 @@ type fieldInfo = {
 }
 
 export function useField({ type, field }: fieldInfo) {
+  if (typeof type !== 'string') throw new Error('Type should be a string.')
+
   const [value, setValue] = useState<string | undefined>(field);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
