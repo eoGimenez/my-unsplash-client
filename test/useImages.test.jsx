@@ -27,13 +27,31 @@ const testFetch = vi.fn((url, options) => {
 })
 
 vi.stubGlobal('fetch', testFetch)
+const { result } = renderHook(() => useImages())
 
 it('useImages() should be a function', () => {
 	expect(typeof useImages).toBe('function')
 })
 describe('getImages()', () => {
-	const { result } = renderHook(() => useImages())
-	it('useImages() must have a method called "getImages', () => {
+	// const { result } = renderHook(() => useImages())
+	it('useImages() must have a method called "getImages"', () => {
 		expect(result.current.getImages).toBeTypeOf('function')
+	})
+})
+
+describe('postImage()', () => {
+	it('useImages() must have a method called "postImage', () => {
+		expect(result.current.postImage).toBeTypeOf('function')
+	})
+
+	it('"postImage()" should throw if in "label" provided is not a "string"', () => {
+		expect(() => {
+			result.current.postImage(2, 'testing imgUrl')
+		}).toThrow(/Type should be a string./)
+	})
+	it('"postImage()" should throw if in "label" provided is not a "string"', () => {
+		expect(() => {
+			result.current.postImage('testing label', 2)
+		}).toThrow(/Type should be a string./)
 	})
 })

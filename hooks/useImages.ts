@@ -35,6 +35,8 @@ export function useImages() {
     }
 
     const postImage = (label: string, imgUrl: string) => {
+      
+      if (typeof label !== "string" || typeof imgUrl !== 'string') throw new Error('Type should be a string.')
 
       const json_string = JSON.stringify({
           label,
