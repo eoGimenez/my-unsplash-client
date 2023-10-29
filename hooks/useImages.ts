@@ -31,7 +31,7 @@ export function useImages() {
         .then(data => {
           setImages(data)
         })
-        .catch(err => alert(err))
+        .catch(err => console.error(err))
     }
 
     const postImage = (label: string, imgUrl: string) => {
