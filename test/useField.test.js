@@ -1,28 +1,6 @@
 import { useField } from '../hooks/useField'
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-
-
-	/* const useStateSpy = vi.fn((initialValue) => {
-		let value = initialValue
-
-		return [
-			value,
-			(newValue) => {
-				value = newValue
-			},
-		]
-	}) */
-	vi.mock('useState', (initialValue) => {
-		let value = initialValue
-
-		return [
-			value,
-			(newValue) => {
-				value = newValue
-			},
-		]
-	})
-
+import { describe, expect, it } from 'vitest'
+import { renderHook } from '@testing-library/react'
 
 describe('useField()', () => {
 	it('Shouold be a function', () => {
@@ -38,8 +16,10 @@ describe('useField()', () => {
 	})
 
 	it('Should yield an object with the with "type" propierty', () => {
-		const testField = useField({ type: 'text', field: '' })
+		const testField = { type: 'text', field: '' }
 
-		expect(testField.value).toBe('text')
+		const { result } = renderHook(() => useField(testField))
+
+		expect(result.current.type).toBe('text')
 	})
 })
