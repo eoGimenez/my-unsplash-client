@@ -6,6 +6,7 @@ describe('useField()', () => {
 	const testField = { type: 'text', field: 'test value' }
 
 	const { result } = renderHook(() => useField(testField))
+	
 	it('Shouold be a function', () => {
 		expect(typeof useField).toBe('function')
 	})
