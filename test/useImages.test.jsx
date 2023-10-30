@@ -7,22 +7,15 @@ const testResponseData = { _id: 'testId', label: 'testLabel', imgUrl: 'testImgUr
 const testFetch = vi.fn((url, options) => {
 	return new Promise((resolve, reject) => {
 		if (typeof options.body !== 'string') return reject('Not a string.')
-		if (!options.body) {
-			const testResponse = {
-				ok: true,
-			}
-			resolve(testResponse)
-		} else {
-			const testResponse = {
-				ok: true,
-				json() {
-					return new Promise((resolve, reject) => {
-						resolve(testResponseData)
-					})
-				},
-			}
-			resolve(testResponse)
+		const testResponse = {
+			ok: true,
+			json() {
+				return new Promise((resolve, reject) => {
+					resolve(testResponseData)
+				})
+			},
 		}
+		resolve(testResponse)
 	})
 })
 
@@ -71,17 +64,19 @@ describe('postImage()', () => {
 				resolve(testResponse)
 			})
 		})
-		
-		let errorMessage = null
+		expect(() => result.current.postImage('testLavel', 'testImgUrl')).toThrow()
 
+		/* 		let errorMessage = null
 
-		const postImageFn = async () => result.current.postImage('testLavel', 'testImgUrl')
-
-		try {
-			await postImageFn()
-		} catch (err) {
-			errorMessage = err
+		const postImageFn = async () => {
+			try {
+				result.current.postImage('testLavel', 'testImgUrl')
+			} catch (err) {
+				errorMessage(err)
+			}
 		}
-		expect(errorMessage).toBe(/aaaaa/)
+
+		await postImageFn()
+		expect(errorMessage).toBe('Non-ok response') */
 	})
 })

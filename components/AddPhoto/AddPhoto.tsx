@@ -15,7 +15,7 @@ export default function AddPhoto({ switchBool }: {switchBool: () => void}) {
         e.preventDefault()
         if (label.value && imgUrl.value) {
             postImage(label.value,imgUrl.value)
-            location.reload()
+            // location.reload()
         }
     }
 

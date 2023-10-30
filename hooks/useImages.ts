@@ -36,8 +36,10 @@ export function useImages() {
 
     const postImage = (label: string, imgUrl: string) => {
       
-      if (typeof label !== "string" || typeof imgUrl !== 'string') throw new Error('Type should be a string.')
-
+      if (typeof label !== "string" || typeof imgUrl !== 'string') {
+        throw new Error('Type should be a string.')
+      }
+      
       const json_string = JSON.stringify({
           label,
           imgUrl
@@ -52,18 +54,16 @@ export function useImages() {
       } 
      fetch(API_URL, requestOptions)
      .then(response => {
+      console.log(response);
+      
       if (!response.ok) {
         throw new Error('Non-ok response')
       }
       return response
      })
-    //  .then(data => {
-    //   console.log(data);
-      // return data
-    //  })
      .catch(err => {
       console.error(err)
-      setErrorMessage(err)
+      // setErrorMessage(err)
     })
     }
 
@@ -80,6 +80,7 @@ export function useImages() {
       }
       fetch(`${API_URL}${imageId}`, requestOptions)
       .then(response => {
+        
       if (response.ok) {
         location.reload()
       }
