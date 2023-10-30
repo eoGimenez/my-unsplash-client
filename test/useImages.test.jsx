@@ -50,9 +50,15 @@ describe('postImage()', () => {
 	})
 
 	it('Should throw in case of non-ok responses', async () => {
-		testFetch.mockImplementationOnce((url, options) => {
+		testFetch.mockResolvedValueOnce({
+			ok: false,
+		})
+		expect(() => result.current.postImage()).toThrow(/Non-ok response/)
+
+		// BUSCAR OPCIONES PARA QUE RECHACE.
+
+		/* 		testFetch.mockImplementationOnce((url, options) => {
 			return new Promise((resolve, reject) => {
-				if (typeof options.body !== 'string') return reject('Not a string.')
 				const testResponse = {
 					ok: false,
 					json() {
@@ -64,8 +70,8 @@ describe('postImage()', () => {
 				resolve(testResponse)
 			})
 		})
-		expect(() => result.current.postImage('testLavel', 'testImgUrl')).toThrow()
-
+		expect(() => result.current.postImage('testLavel', 'testImgUrl')).toThrow() */
+		// return expect(result.current.postImage('testLavel', 'testImgUrl')).rejects.toBeInstanceOf(Error)
 		/* 		let errorMessage = null
 
 		const postImageFn = async () => {
