@@ -52,15 +52,19 @@ export function useImages() {
       } 
      fetch(API_URL, requestOptions)
      .then(response => {
-      if (response.ok) {
-        return response.json()
+      if (!response.ok) {
+        throw new Error('Non-ok response')
       }
-      throw response
+      return response
      })
-     .then(data => {
-      console.log(data);
-     })
-     .catch(err => console.error(err))
+    //  .then(data => {
+    //   console.log(data);
+      // return data
+    //  })
+     .catch(err => {
+      console.error(err)
+      setErrorMessage(err)
+    })
     }
 
     const deleteImage = ({imageId , userCode } : {imageId: string, userCode: string}) => {

@@ -27,13 +27,13 @@ const testFetch = vi.fn((url, options) => {
 })
 
 vi.stubGlobal('fetch', testFetch)
+
 const { result } = renderHook(() => useImages())
 
 it('useImages() should be a function', () => {
 	expect(typeof useImages).toBe('function')
 })
 describe('getImages()', () => {
-	// const { result } = renderHook(() => useImages())
 	it('useImages() must have a method called "getImages"', () => {
 		expect(result.current.getImages).toBeTypeOf('function')
 	})
@@ -44,14 +44,44 @@ describe('postImage()', () => {
 		expect(result.current.postImage).toBeTypeOf('function')
 	})
 
-	it('"postImage()" should throw if in "label" provided is not a "string"', () => {
+	it('Should throw if in "label" provided is not a "string"', () => {
 		expect(() => {
 			result.current.postImage(2, 'testing imgUrl')
 		}).toThrow(/Type should be a string./)
 	})
-	it('"postImage()" should throw if in "label" provided is not a "string"', () => {
+
+	it('Should throw if in "imgUrl" provided is not a "string"', () => {
 		expect(() => {
 			result.current.postImage('testing label', 2)
 		}).toThrow(/Type should be a string./)
+	})
+
+	it('Should throw in case of non-ok responses', async () => {
+		testFetch.mockImplementationOnce((url, options) => {
+			return new Promise((resolve, reject) => {
+				if (typeof options.body !== 'string') return reject('Not a string.')
+				const testResponse = {
+					ok: false,
+					json() {
+						return new Promise((resolve, reject) => {
+							resolve(testResponseData)
+						})
+					},
+				}
+				resolve(testResponse)
+			})
+		})
+		
+		let errorMessage = null
+
+
+		const postImageFn = async () => result.current.postImage('testLavel', 'testImgUrl')
+
+		try {
+			await postImageFn()
+		} catch (err) {
+			errorMessage = err
+		}
+		expect(errorMessage).toBe(/aaaaa/)
 	})
 })
