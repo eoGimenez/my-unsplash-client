@@ -54,7 +54,6 @@ export function useImages() {
       } 
      return fetch(API_URL, requestOptions)
      .then(response => {
-      console.log("response :",response.ok);
       if (!response.ok) {
         // esta respuesta es siendo hardcodeada por finalidades de los tests, 
         // se incorporara esta misma respuesta en el back-end
