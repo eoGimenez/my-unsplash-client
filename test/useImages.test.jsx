@@ -56,44 +56,15 @@ describe('postImage()', () => {
 		const resultTestPromise = result.current.postImage(testData)
 
 		expect(resultTestPromise).resolves.toEqual(testResponseData)
+	})
+
+	it('Should throw in case of non-ok responses', async () => {
+		const testData = { label: 'testig', imgUrl: 'image' }
+		testFetch.mockResolvedValueOnce({
+			ok: false,
 		})
-		
-	// 	it('Should throw in case of non-ok responses', async () => {
-	// 		const testData = { label: 'testig', imgUrl: 'image' }
-	// 		testFetch.mockResolvedValueOnce({
-	// 			ok: false,
-	// 		})
-	// 		expect(() => result.current.postImage(testData)).toThrow(
-	// 			/Non-ok response/
-	// 		)
-	// })
-	// BUSCAR OPCIONES PARA QUE RECHACE.
+		const resultTestPromise = result.current.postImage(testData)
 
-	/* 		testFetch.mockImplementationOnce((url, options) => {
-			return new Promise((resolve, reject) => {
-				const testResponse = {
-					ok: false,
-					json() {
-						return new Promise((resolve, reject) => {
-							resolve(testResponseData)
-						})
-					},
-				}
-				resolve(testResponse)
-			})
-		})
-		expect(() => result.current.postImage('testLavel', 'testImgUrl')).toThrow() 
-		// return expect(result.current.postImage('testLavel', 'testImgUrl')).rejects.toBeInstanceOf(Error)
-				let errorMessage = null
-
-		const postImageFn = async () => {
-			try {
-				result.current.postImage('testLavel', 'testImgUrl')
-			} catch (err) {
-				errorMessage(err)
-			}
-		}
-
-		await postImageFn()
-		expect(errorMessage).toBe('Non-ok response') */
+		expect(resultTestPromise).rejects.toThrow(/Non-ok response/)
+	})
 })

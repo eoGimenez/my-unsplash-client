@@ -54,17 +54,14 @@ export function useImages() {
       } 
      return fetch(API_URL, requestOptions)
      .then(response => {
+      console.log("response :",response.ok);
       if (!response.ok) {
-        throw new Error('Non-ok response')
+        throw ('Non-ok response')
       }
       return response.json()
      })
-    //  .then(data => {
-    //   console.log(data);
-    //   return data
-    //  })
      .catch(err => {
-      console.error(err)
+      console.error("somthing go wrong : ",err)
       throw err
     })
     }
