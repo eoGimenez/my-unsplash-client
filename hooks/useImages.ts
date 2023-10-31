@@ -56,6 +56,8 @@ export function useImages() {
      .then(response => {
       console.log("response :",response.ok);
       if (!response.ok) {
+        // esta respuesta es siendo hardcodeada por finalidades de los tests, 
+        // se incorporara esta misma respuesta en el back-end
         throw ('Non-ok response')
       }
       return response.json()
@@ -68,6 +70,9 @@ export function useImages() {
 
     const deleteImage = ({imageId , userCode } : {imageId: string, userCode: string}) => {
 
+      if (typeof imageId !== "string" || typeof imageId !== 'string') {
+        throw new Error('Type should be a string.')
+      }
       const json_string = JSON.stringify({ userCode })
       
       const requestOptions = {
@@ -77,17 +82,21 @@ export function useImages() {
         }),
         body: json_string
       }
-      fetch(`${API_URL}${imageId}`, requestOptions)
+      return fetch(`${API_URL}${imageId}`, requestOptions)
       .then(response => {
         
-      if (response.ok) {
-        location.reload()
+        if (!response.ok) {
+        // esta respuesta es siendo hardcodeada por finalidades de los tests, 
+        // se incorporara esta misma respuesta en el back-end
+        throw ('Non-ok response')
       }
-      throw response
+      console.log(response)
+      
+      location.reload()
       })
       .catch(err => {
         console.error(err);
-        
+        throw err
         setErrorMessage('Your user code is not correct !')
       })
     }

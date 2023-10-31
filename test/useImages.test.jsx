@@ -18,9 +18,7 @@ const testFetch = vi.fn((url, options) => {
 		resolve(testResponse)
 	})
 })
-// beforeEach(() => {
-// 	vi.spyOn(globalThis, 'fetch').mockImplementationOnce(testFetch)
-// })
+
 vi.stubGlobal('fetch', testFetch)
 
 const { result } = renderHook(() => useImages())
@@ -28,24 +26,27 @@ const { result } = renderHook(() => useImages())
 it('useImages() should be a function', () => {
 	expect(typeof useImages).toBe('function')
 })
+
+// TESTS Unitarios de metodo getImages()
 describe('getImages()', () => {
-	it('useImages() must have a method called "getImages"', () => {
+	it('useImages() must have a method called "getImages()"', () => {
 		expect(result.current.getImages).toBeTypeOf('function')
 	})
 })
 
+// TESTS Unitarios de metodo postImages()
 describe('postImage()', () => {
-	it('useImages() must have a method called "postImage', () => {
+	it('useImages() must have a method called "postImage()"', () => {
 		expect(result.current.postImage).toBeTypeOf('function')
 	})
 
-	it('Should throw if in "label" provided is not a "string"', () => {
+	it('Should throw if "label" provided is not a string"', () => {
 		expect(() => {
 			result.current.postImage(2, 'testing imgUrl')
 		}).toThrow(/Type should be a string./)
 	})
 
-	it('Should throw if in "imgUrl" provided is not a "string"', () => {
+	it('Should throw if "imgUrl" provided is not a string', () => {
 		expect(() => {
 			result.current.postImage('testing label', 2)
 		}).toThrow(/Type should be a string./)
@@ -64,6 +65,33 @@ describe('postImage()', () => {
 			ok: false,
 		})
 		const resultTestPromise = result.current.postImage(testData)
+
+		expect(resultTestPromise).rejects.toThrow(/Non-ok response/)
+	})
+})
+// TESTS Unitarios de metodo deleteImage()
+
+describe('deleteImage()', () => {
+	it('useImages() must have the method "deleteImage()"', () => {
+		expect(result.current.deleteImage).toBeTypeOf('function')
+	})
+
+	it('Should throw if "imageId" provided is not a string', () => {
+		expect(() => {
+			result.current.deleteImage(2, 'testing userCode')
+		}).toThrow(/Type should be a string./)
+	})
+	it('Should throw if "userCode" provided is not a string', () => {
+		expect(() => {
+			result.current.deleteImage('testing imageId', 2)
+		}).toThrow(/Type should be a string./)
+	})
+	it('Should throw if "userCode" provided is not correct', async () => {
+		const testWrongData = { imageId: 'testId', userCode: 'WrongCode' }
+		testFetch.mockResolvedValueOnce({
+			ok: false,
+		})
+		const resultTestPromise = result.current.deleteImage(testWrongData)
 
 		expect(resultTestPromise).rejects.toThrow(/Non-ok response/)
 	})
