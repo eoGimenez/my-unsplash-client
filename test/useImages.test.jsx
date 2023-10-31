@@ -69,6 +69,7 @@ describe('postImage()', () => {
 		expect(resultTestPromise).rejects.toThrow(/Non-ok response/)
 	})
 })
+
 // TESTS Unitarios de metodo deleteImage()
 
 describe('deleteImage()', () => {
@@ -81,11 +82,13 @@ describe('deleteImage()', () => {
 			result.current.deleteImage(2, 'testing userCode')
 		}).toThrow(/Type should be a string./)
 	})
+
 	it('Should throw if "userCode" provided is not a string', () => {
 		expect(() => {
 			result.current.deleteImage('testing imageId', 2)
 		}).toThrow(/Type should be a string./)
 	})
+
 	it('Should throw if "userCode" provided is not correct', async () => {
 		const testWrongData = { imageId: 'testId', userCode: 'WrongCode' }
 		testFetch.mockResolvedValueOnce({
@@ -93,6 +96,28 @@ describe('deleteImage()', () => {
 		})
 		const resultTestPromise = result.current.deleteImage(testWrongData)
 
-		expect(resultTestPromise).rejects.toThrow(/Non-ok response/)
+		expect(resultTestPromise).rejects.toThrow(/Your user code is not correct !/)
+	})
+
+	it('Should return a confirmation message if delete was successful', () => {
+		const testData = { imageId: 'testId', userCode: 'testCode' }
+		testFetch.mockImplementationOnce((url, options) => {
+			return new Promise((resolve, reject) => {
+				if (typeof options.body !== 'string') return reject('Not a string.')
+				const testResponse = {
+					ok: true,
+					json() {
+						return new Promise((resolve, reject) => {
+							resolve({ message: 'The Photo was deleted' })
+						})
+					},
+				}
+				resolve(testResponse)
+			})
+		})
+
+		const resultTestPromise = result.current.deleteImage(testData)
+
+		expect(resultTestPromise).resolves.toStrictEqual({ message: 'The Photo was deleted' })
 	})
 })

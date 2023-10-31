@@ -86,18 +86,17 @@ export function useImages() {
       .then(response => {
         
         if (!response.ok) {
-        // esta respuesta es siendo hardcodeada por finalidades de los tests, 
-        // se incorporara esta misma respuesta en el back-end
-        throw ('Non-ok response')
+        // esta respuesta es siendo hardcodeada por finalidades de los test,
+        // EN EL BACK-END Tiene la misma respuesta
+        throw ('Your user code is not correct !')
       }
-      console.log(response)
-      
-      location.reload()
+        return response.json()
+      // location.reload()
       })
       .catch(err => {
         console.error(err);
-        throw err
         setErrorMessage('Your user code is not correct !')
+        throw err
       })
     }
     
