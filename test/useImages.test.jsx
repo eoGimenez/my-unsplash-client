@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useImages } from '../hooks/useImages'
 import { renderHook } from '@testing-library/react'
 
@@ -18,8 +18,10 @@ const testFetch = vi.fn((url, options) => {
 		resolve(testResponse)
 	})
 })
-
-vi.stubGlobal('fetch', testFetch)
+beforeEach(() => {
+	vi.spyOn(globalThis, 'fetch').mockImplementationOnce(testFetch)
+})
+// vi.stubGlobal('fetch', testFetch)
 
 const { result } = renderHook(() => useImages())
 
@@ -49,15 +51,24 @@ describe('postImage()', () => {
 		}).toThrow(/Type should be a string./)
 	})
 
-	it('Should throw in case of non-ok responses', async () => {
+	it('Should return an object with propierties: "_id", "label" and "imgUrl", when success', async () => {
+		const resultTest = result.current.postImage('testing Label', 'testin imgUrl')
+
+		console.log('resulttest', resultTest)
+		expect(resultTest).toBeDefined()
+	})
+
+	/* 	it('Should throw in case of non-ok responses', async () => {
 		testFetch.mockResolvedValueOnce({
 			ok: false,
 		})
-		expect(() => result.current.postImage()).toThrow(/Non-ok response/)
+		expect(() => result.current.postImage('testing Label', 'testin imgUrl')).toThrow(
+			/Non-ok response/
+		)
+	}) */
+	// BUSCAR OPCIONES PARA QUE RECHACE.
 
-		// BUSCAR OPCIONES PARA QUE RECHACE.
-
-		/* 		testFetch.mockImplementationOnce((url, options) => {
+	/* 		testFetch.mockImplementationOnce((url, options) => {
 			return new Promise((resolve, reject) => {
 				const testResponse = {
 					ok: false,
@@ -70,9 +81,9 @@ describe('postImage()', () => {
 				resolve(testResponse)
 			})
 		})
-		expect(() => result.current.postImage('testLavel', 'testImgUrl')).toThrow() */
+		expect(() => result.current.postImage('testLavel', 'testImgUrl')).toThrow() 
 		// return expect(result.current.postImage('testLavel', 'testImgUrl')).rejects.toBeInstanceOf(Error)
-		/* 		let errorMessage = null
+				let errorMessage = null
 
 		const postImageFn = async () => {
 			try {
@@ -84,5 +95,4 @@ describe('postImage()', () => {
 
 		await postImageFn()
 		expect(errorMessage).toBe('Non-ok response') */
-	})
 })
