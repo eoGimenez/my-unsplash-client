@@ -34,7 +34,7 @@ export function useImages() {
         .catch(err => console.error(err))
     }
 
-    const postImage = (label: string, imgUrl: string) => {
+    const postImage = ({label, imgUrl} : {label: string, imgUrl: string}) => {
       
       if (typeof label !== "string" || typeof imgUrl !== 'string') {
         throw new Error('Type should be a string.')

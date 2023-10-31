@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { useImages } from '../hooks/useImages'
 import { renderHook } from '@testing-library/react'
 
@@ -18,10 +18,10 @@ const testFetch = vi.fn((url, options) => {
 		resolve(testResponse)
 	})
 })
-beforeEach(() => {
-	vi.spyOn(globalThis, 'fetch').mockImplementationOnce(testFetch)
-})
-// vi.stubGlobal('fetch', testFetch)
+// beforeEach(() => {
+// 	vi.spyOn(globalThis, 'fetch').mockImplementationOnce(testFetch)
+// })
+vi.stubGlobal('fetch', testFetch)
 
 const { result } = renderHook(() => useImages())
 
@@ -52,10 +52,12 @@ describe('postImage()', () => {
 	})
 
 	it('Should return an object with propierties: "_id", "label" and "imgUrl", when success', async () => {
-		const resultTest = result.current.postImage('testing Label', 'testin imgUrl')
+		// const resultTest = result.current.postImage('testing Label', 'testin imgUrl')
+		const testData = {label: 'testig', imgUrl: 'image'}
 
-		console.log('resulttest', resultTest)
-		expect(resultTest).toBeDefined()
+		expect(result.current.postImage(testData)).resolves.toEqual(
+			testResponseData
+		)
 	})
 
 	/* 	it('Should throw in case of non-ok responses', async () => {
