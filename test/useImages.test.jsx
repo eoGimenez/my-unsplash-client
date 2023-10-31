@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { useImages } from '../hooks/useImages'
 import { renderHook } from '@testing-library/react'
 
@@ -52,22 +52,21 @@ describe('postImage()', () => {
 	})
 
 	it('Should return an object with propierties: "_id", "label" and "imgUrl", when success', async () => {
-		// const resultTest = result.current.postImage('testing Label', 'testin imgUrl')
-		const testData = {label: 'testig', imgUrl: 'image'}
+		const testData = { label: 'testig', imgUrl: 'image' }
+		const resultTestPromise = result.current.postImage(testData)
 
-		expect(result.current.postImage(testData)).resolves.toEqual(
-			testResponseData
-		)
-	})
-
-	/* 	it('Should throw in case of non-ok responses', async () => {
-		testFetch.mockResolvedValueOnce({
-			ok: false,
+		expect(resultTestPromise).resolves.toEqual(testResponseData)
 		})
-		expect(() => result.current.postImage('testing Label', 'testin imgUrl')).toThrow(
-			/Non-ok response/
-		)
-	}) */
+		
+	// 	it('Should throw in case of non-ok responses', async () => {
+	// 		const testData = { label: 'testig', imgUrl: 'image' }
+	// 		testFetch.mockResolvedValueOnce({
+	// 			ok: false,
+	// 		})
+	// 		expect(() => result.current.postImage(testData)).toThrow(
+	// 			/Non-ok response/
+	// 		)
+	// })
 	// BUSCAR OPCIONES PARA QUE RECHACE.
 
 	/* 		testFetch.mockImplementationOnce((url, options) => {

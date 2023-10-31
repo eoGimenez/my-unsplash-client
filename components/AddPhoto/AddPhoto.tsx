@@ -14,8 +14,8 @@ export default function AddPhoto({ switchBool }: {switchBool: () => void}) {
     const imageHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
         if (label.value && imgUrl.value) {
-            postImage(label.value,imgUrl.value)
-            // location.reload()
+            postImage({label: label.value, imgUrl: imgUrl.value})
+            location.reload()
         }
     }
 
