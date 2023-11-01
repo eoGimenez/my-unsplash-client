@@ -11,7 +11,7 @@ describe('useField()', () => {
 		expect(typeof useField).toBe('function')
 	})
 
-	it('Should throw if you dont provide any paramater', () => {
+	it('Should throw if you dont provide any parameter', () => {
 		expect(() => useField()).toThrow()
 	})
 
