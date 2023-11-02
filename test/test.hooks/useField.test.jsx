@@ -1,4 +1,4 @@
-import { useField } from '../hooks/useField'
+import { useField } from '../../hooks/useField'
 import { describe, expect, it } from 'vitest'
 import { renderHook } from '@testing-library/react'
 
@@ -33,7 +33,7 @@ describe('useField()', () => {
 
 	it('Should call method "onChange" to change the "value" propierty', () => {
 		result.current.value = 'This is the new value'
-		
+
 		expect(result.current.value).toBe('This is the new value')
 		expect(result.current.value).not.toBe(testField.field)
 	})

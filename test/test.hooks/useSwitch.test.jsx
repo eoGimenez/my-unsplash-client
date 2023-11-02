@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { useSwitch } from '../hooks/useSwitch'
+import { useSwitch } from '../../hooks/useSwitch'
 import { renderHook } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 

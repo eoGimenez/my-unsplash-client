@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { useSearch } from '../hooks/useSearch'
+import { useSearch } from '../../hooks/useSearch'
 import { renderHook } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 

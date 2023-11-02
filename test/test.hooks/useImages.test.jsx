@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import { useImages } from '../hooks/useImages'
+import { useImages } from '../../hooks/useImages'
 import { renderHook } from '@testing-library/react'
 
 const testResponseData = { _id: 'testId', label: 'testLabel', imgUrl: 'testImgUrl' }
