@@ -23,7 +23,6 @@ export function useSearch( { images }: {images: ImageType[] | null}) {
   })
     
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      // console.log("VALUE PASADO", typeof e.target.value);
       if (typeof e.target.value !== 'string') throw new Error('Error - Value must be a string')
       const newQuery = e.target.value.toLocaleLowerCase()
       setValue(newQuery);
