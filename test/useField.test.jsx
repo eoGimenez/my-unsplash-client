@@ -6,7 +6,7 @@ describe('useField()', () => {
 	const testField = { type: 'text', field: 'test value' }
 
 	const { result } = renderHook(() => useField(testField))
-	
+
 	it('Should be a function', () => {
 		expect(typeof useField).toBe('function')
 	})
@@ -33,7 +33,7 @@ describe('useField()', () => {
 
 	it('Should call method "onChange" to change the "value" propierty', () => {
 		result.current.value = 'This is the new value'
-
+		
 		expect(result.current.value).toBe('This is the new value')
 		expect(result.current.value).not.toBe(testField.field)
 	})

@@ -1,13 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import { useSearch } from '../hooks/useSearch'
 import { renderHook } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
 
 const testSearch = [
 	{ _id: 'testId', label: 'testLabel', imgUrl: 'testImgUrl' },
 	{ _id: 'testId_2', label: 'testLabel_2', imgUrl: 'testImgUrl_2' },
 	{ _id: 'testId_3', label: 'testLabel_3', imgUrl: 'testImgUrl_3' },
+	{ _id: 'testId_4', label: 'aa', imgUrl: 'testImgUrl_4' },
 ]
-const { result } = renderHook(() => useSearch({ images: testSearch }))
 
 describe('useSearch()', () => {
 	it('useSearch() must be a function', () => {
@@ -40,7 +41,31 @@ describe('useSearch()', () => {
 
 	it('Should throw if object provided have not "imgUrl" propierty', () => {
 		expect(() =>
-			renderHook(() => useSearch({ images: [{ _id: 'testNoimgUrl', label: 'testNoimgUrl' }] }))
+			renderHook(() =>
+				useSearch({ images: [{ _id: 'testNoimgUrl', label: 'testNoimgUrl' }] })
+			)
 		).toThrow(/Error - One or more elements have not "imgUrl"/)
+	})
+
+	it('Should yield an object with the following propierties: "type", "value", "onChange" and "searched"', () => {
+		const { result } = renderHook(() => useSearch({ images: testSearch }))
+
+		expect(result.current.type).toBeDefined()
+		expect(result.current.value).toBeDefined()
+		expect(result.current.onChange).toBeDefined()
+		expect(result.current.searched).toBeDefined()
+	})
+
+	it('Should return a "searched" object when probide a valid query', async () => {
+		const { result } = renderHook(() => useSearch({ images: testSearch }))
+
+		const newQuery = 'testLabel_3'
+
+		act(() => {
+			result.current.onChange({ target: { value: newQuery } })
+		})
+
+		expect(result.current.value).toBe(newQuery.toLocaleLowerCase())
+		expect(result.current.searched).toEqual([testSearch[2]])
 	})
 })
