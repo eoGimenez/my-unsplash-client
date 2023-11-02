@@ -56,7 +56,7 @@ describe('useSearch()', () => {
 		expect(result.current.searched).toBeDefined()
 	})
 
-	it('Should return a "searched" object when probide a valid query', async () => {
+	it('Should return a "searched" object when probide a valid query equal to some "label"', async () => {
 		const { result } = renderHook(() => useSearch({ images: testSearch }))
 
 		const newQuery = 'testLabel_3'
@@ -67,5 +67,15 @@ describe('useSearch()', () => {
 
 		expect(result.current.value).toBe(newQuery.toLocaleLowerCase())
 		expect(result.current.searched).toEqual([testSearch[2]])
+	})
+
+	it('Should throw if "value" provided is not a string', () => {
+		const { result } = renderHook(() => useSearch({ images: testSearch }))
+
+		const newQuery = 2
+
+		expect(() => result.current.onChange({ target: { value: newQuery } })).toThrow(
+			/Error - Value must be a string/
+		)
 	})
 })
