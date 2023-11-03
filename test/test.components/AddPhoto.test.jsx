@@ -2,7 +2,7 @@ import { afterEach, describe, it } from 'vitest'
 import AddPhoto from '../../components/AddPhoto/AddPhoto'
 import { cleanup, render, screen } from '@testing-library/react'
 
-describe('AddPhoto()', () => {
+describe('Component AddPhoto()', () => {
   afterEach(cleanup)
 
   it('Should render the component "AddPhoto"', () => {
