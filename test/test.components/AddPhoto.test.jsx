@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import AddPhoto from '../../components/AddPhoto/AddPhoto'
 import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 
@@ -42,4 +42,19 @@ describe('Component AddPhoto()', () => {
 		fireEvent.change(inputImgUrl, { target: { value: 'test imgUrl' } })
 		expect(inputImgUrl.value).toBe('test imgUrl')
 	})
+
+
+  // Funciona correctamente, tengo que refactorizar AddPhoto, crear un custom hook para manejar el form,
+  // y pasarlo como prop desde Nav, para poder enviar el spy,
+  // Buscar si es buena practica armar el formHandler desde un custom hook.
+  
+  // it('Should execute imageHandler() when submit the form', () => {
+  //   const imageMock = vi.fn()
+  //   render(<AddPhoto imageHandler={imageMock} />)
+
+  //   const submit = screen.getByText('Submit')
+  //   fireEvent.click(submit)
+
+  //   expect(imageMock).toBeCalled()
+  // })
 })

@@ -8,6 +8,7 @@ import { searchInput } from '../../hooks/useSearch'
 export default function Nav({searchInput}:{searchInput: searchInput}) {
     const {isTrue, switchBool } = useSwitch()
     
+    
     return (
         
             <nav>

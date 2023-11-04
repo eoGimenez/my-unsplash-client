@@ -6,7 +6,7 @@ import './AddPhoto.css'
     switchBool: () => void
 } */
 
-export default function AddPhoto({ switchBool }: {switchBool: () => void}) {
+export default function AddPhoto({ switchBool, /* imageHandler */ }: {switchBool: () => void/* , imageHandler: () => void */}) {
     const label = useField({type: 'text', field: ''})
     const imgUrl = useField({type: 'text', field: ''})
     const { postImage } = useImages()
