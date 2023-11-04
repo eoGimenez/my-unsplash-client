@@ -25,11 +25,11 @@ export default function AddPhoto({ switchBool }: {switchBool: () => void}) {
             <form className='form--new--photo' onSubmit={imageHandler}>
                 <fieldset>
                     <label htmlFor='label'>Label</label>
-                    <input id='label' placeholder='Example name' {...label} />
+                    <input id='label' aria-label='label-input' placeholder='Example name' {...label} />
                 </fieldset>
                 <fieldset>
                     <label htmlFor='imgUrl'>Photo URL</label>
-                    <input id='imgUrl' placeholder='https://www.example-path-of-image.com.la' {...imgUrl} />
+                    <input id='imgUrl' aria-label='imgurl-input' placeholder='https://www.example-path-of-image.com.la' {...imgUrl} />
                 </fieldset>
                 <div className='form--new--photo--buttons'>
                 <p onClick={() => {switchBool()}}>Cancel</p>

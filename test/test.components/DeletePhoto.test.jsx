@@ -1,5 +1,5 @@
-import { describe, it } from "vitest";
+// import { describe, it } from "vitest";
 
-describe('Component DeletePhoto()', () => {
-  it('')
-})
+// describe('Component DeletePhoto()', () => {
+//   it('')
+// })
