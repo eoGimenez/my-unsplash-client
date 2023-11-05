@@ -24,7 +24,7 @@ export default function Nav({searchInput}:{searchInput: searchInput}) {
                         <input id='nav--search--input' aria-label='search-input' placeholder='Search by name' {...searchInput}  />
                     </div>
                 </div>
-                <p className='btn--styled' onClick={switchBool}>Add a photo</p>
+                <button className='btn--styled' onClick={switchBool}>Add a photo</button>
                 {isTrue ? <AddPhoto switchBool={switchBool} imageHandler={imageHandler}/> : null}
             </nav>
         

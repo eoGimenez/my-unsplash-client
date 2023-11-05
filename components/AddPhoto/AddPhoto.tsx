@@ -9,9 +9,10 @@ import './AddPhoto.css'
 export default function AddPhoto({ switchBool, imageHandler }: {switchBool: () => void, imageHandler: ({label, imgUrl}: {label:string | undefined, imgUrl: string | undefined}) => void}) {
     const label = useField({type: 'text', field: ''})
     const imgUrl = useField({type: 'text', field: ''})
-    // const { postImage } = useImages()
-
-/*     const imageHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
+    
+    /* 
+    const { postImage } = useImages()
+        const imageHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
         if (label.value && imgUrl.value) {
             postImage({label: label.value, imgUrl: imgUrl.value})
