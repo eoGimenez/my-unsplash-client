@@ -89,8 +89,8 @@ export function useImages() {
         // EN EL BACK-END Tiene la misma respuesta
         throw ('Your user code is not correct !')
       }
+        location.reload()
         return response.json()
-      // location.reload()
       })
       .catch(err => {
         console.error(err);
@@ -98,10 +98,18 @@ export function useImages() {
         throw err
       })
     }
+
+    const imageHandler = ({label, imgUrl} : {label: string |undefined , imgUrl: string | undefined}) => {
+      // e.preventDefault()
+      if (label && imgUrl) {
+          postImage({label: label, imgUrl: imgUrl})
+          location.reload()
+      }
+    }
     
     useEffect(() => {
         getImages()
     }, [])
 
-    return { images, errorMessage, getImages, postImage, deleteImage }
+    return { images, errorMessage, getImages, postImage, deleteImage, imageHandler }
 }

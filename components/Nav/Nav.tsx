@@ -2,12 +2,13 @@ import './Nav.css'
 import { useSwitch } from '../../hooks/useSwitch'
 import AddPhoto from '../AddPhoto/AddPhoto'
 import { searchInput } from '../../hooks/useSearch'
+import { useImages } from '../../hooks/useImages'
 
 
 
 export default function Nav({searchInput}:{searchInput: searchInput}) {
-    const {isTrue, switchBool } = useSwitch()
-    
+    const {isTrue, switchBool } = useSwitch() 
+    const { imageHandler } = useImages()
     
     return (
         
@@ -24,7 +25,7 @@ export default function Nav({searchInput}:{searchInput: searchInput}) {
                     </div>
                 </div>
                 <p className='btn--styled' onClick={switchBool}>Add a photo</p>
-                {isTrue ? <AddPhoto switchBool={switchBool}/> : null}
+                {isTrue ? <AddPhoto switchBool={switchBool} imageHandler={imageHandler}/> : null}
             </nav>
         
     )
