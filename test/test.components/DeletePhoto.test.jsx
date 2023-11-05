@@ -7,7 +7,7 @@ describe('Component DeletePhoto()', () => {
 
 	const setup = () => {
 		const utils = render(<DeletePhoto />)
-		const passwordLabel = screen.getByLabelText('password-label')
+		const passwordLabel = screen.getByLabelText('password-input')
 
 		return {
 			passwordLabel,

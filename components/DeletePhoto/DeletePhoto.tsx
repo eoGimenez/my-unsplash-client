@@ -20,7 +20,7 @@ export default function DeletePhoto ({image, switchBool, }: {image:ImageType, sw
             <form className='form--delete--photo' onSubmit={deleteHandler}>
                 <fieldset>
                     <label htmlFor='password'>Password</label>
-                    <input id='password' aria-label='password-label' placeholder='***********' {...userCode} />
+                    <input id='password' aria-label='password-input' placeholder='***********' {...userCode} />
                 </fieldset>
                 <div className='form--delete--photo--buttons'>
                     {errorMessage ? <p className='error--message'>{errorMessage}</p>: null}
