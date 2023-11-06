@@ -7,7 +7,7 @@ import { useImages } from '../../hooks/useImages'
 
 
 export default function Nav({searchInput}:{searchInput: searchInput}) {
-    const {isTrue, switchBool } = useSwitch() 
+    const { isTrue, switchBool } = useSwitch() 
     const { imageHandler } = useImages()
     
     return (
