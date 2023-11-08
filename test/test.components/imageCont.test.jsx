@@ -24,7 +24,20 @@ describe('Component ImageCont()', () => {
 
 		const buttonTest = screen.getByText('delete')
 		fireEvent.click(buttonTest)
-
+		
 		expect(screen.getByText('Are you sure ?')).toBeDefined()
+	})
+	
+	it('Should close DeletePhoto component when the "cancel" buttons is clicked while DeletePhoto is rendered', () => {
+		const { container } = setup(imageTest)
+		const buttonTest = screen.getByText('delete')
+		
+		expect(container.querySelector('.modal--delete--photo')).toBeNull()
+		
+		fireEvent.click(buttonTest)
+		expect(container.querySelector('.modal--delete--photo')).not.toBeNull()
+		fireEvent.click(buttonTest)
+		
+		expect(container.querySelector('.modal--delete--photo')).toBeNull()
 	})
 })
